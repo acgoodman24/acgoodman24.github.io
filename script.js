@@ -1,12 +1,13 @@
-// Smooth scroll for internal links
 const navLinks = document.getElementById("navLinks");
 const hamburger = document.getElementById("hamburger");
 
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
     const target = document.querySelector(href);
     if (!target) return;
+
     e.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -15,7 +16,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// mobile nav toggle
+// Mobile nav toggle
 if (hamburger && navLinks) {
   hamburger.addEventListener("click", () => {
     const open = navLinks.classList.toggle("open");
@@ -23,54 +24,46 @@ if (hamburger && navLinks) {
   });
 }
 
-// top-right hero mouse tracker orb
+// Engineering HUD tracker
 (function () {
   const hero = document.getElementById("hero");
-  const orb = document.getElementById("heroOrb");
-  if (!hero || !orb) return;
+  const hud = document.getElementById("heroHud");
+  const ring = document.getElementById("hudRing");
+  const cross = document.getElementById("hudCrosshair");
+  const coords = document.getElementById("hudCoords");
 
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
+  if (!hero || !hud || !ring || !cross || !coords) return;
 
-  const easing = 0.12;
+  let tx = hud.clientWidth * 0.72;
+  let ty = hud.clientHeight * 0.32;
+  let x = tx, y = ty;
+
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
   hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-
-    // only track in top-right region for subtlety
-    const relX = (e.clientX - rect.left) / rect.width;
-    const relY = (e.clientY - rect.top) / rect.height;
-
-    if (relX > 0.55 && relY < 0.65) {
-      targetX = (e.clientX - rect.left);
-      targetY = (e.clientY - rect.top);
-      orb.style.opacity = "0.92";
-    } else {
-      orb.style.opacity = "0.55";
-    }
+    const hudRect = hud.getBoundingClientRect();
+    tx = clamp(e.clientX - hudRect.left, 18, hudRect.width - 18);
+    ty = clamp(e.clientY - hudRect.top, 18, hudRect.height - 18);
   });
 
   hero.addEventListener("mouseleave", () => {
-    // settle to default top-right resting spot
-    targetX = hero.clientWidth * 0.78;
-    targetY = hero.clientHeight * 0.22;
-    orb.style.opacity = "0.6";
+    tx = hud.clientWidth * 0.72;
+    ty = hud.clientHeight * 0.32;
   });
 
-  // initial position
-  targetX = hero.clientWidth * 0.78;
-  targetY = hero.clientHeight * 0.22;
-  currentX = targetX;
-  currentY = targetY;
+  function render() {
+    x += (tx - x) * 0.14;
+    y += (ty - y) * 0.14;
 
-  function animate() {
-    currentX += (targetX - currentX) * easing;
-    currentY += (targetY - currentY) * easing;
-    orb.style.transform = `translate(${currentX - 90}px, ${currentY - 90}px)`;
-    requestAnimationFrame(animate);
+    ring.style.transform = `translate(${x - 60}px, ${y - 60}px)`;
+    cross.style.transform = `translate(${x - 41}px, ${y - 41}px)`;
+
+    const nx = (x / hud.clientWidth).toFixed(3);
+    const ny = (y / hud.clientHeight).toFixed(3);
+    coords.textContent = `x: ${nx}   y: ${ny}`;
+
+    requestAnimationFrame(render);
   }
 
-  animate();
+  render();
 })();
