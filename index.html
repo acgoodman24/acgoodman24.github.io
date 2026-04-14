@@ -31,16 +31,9 @@
   </nav>
 
   <section id="hero">
-    <div class="hero-hud" id="heroHud" aria-hidden="true">
-      <div class="hud-grid"></div>
-      <div class="hud-scan"></div>
-      <div class="hud-ring" id="hudRing"></div>
-      <div class="hud-crosshair" id="hudCrosshair">
-        <span class="h-line"></span>
-        <span class="v-line"></span>
-        <span class="center-dot"></span>
-      </div>
-      <div class="hud-coords mono" id="hudCoords">x: 0.00  y: 0.00</div>
+    <!-- Invisible until cursor moves in top area -->
+    <div class="cursor-glow-layer" aria-hidden="true">
+      <div class="cursor-glow" id="cursorGlow"></div>
     </div>
 
     <div class="hero-grid">

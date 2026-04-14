@@ -24,46 +24,53 @@ if (hamburger && navLinks) {
   });
 }
 
-// Engineering HUD tracker
+// Subtle top-area cursor glow (invisible until movement)
 (function () {
-  const hero = document.getElementById("hero");
-  const hud = document.getElementById("heroHud");
-  const ring = document.getElementById("hudRing");
-  const cross = document.getElementById("hudCrosshair");
-  const coords = document.getElementById("hudCoords");
+  const glow = document.getElementById("cursorGlow");
+  if (!glow) return;
 
-  if (!hero || !hud || !ring || !cross || !coords) return;
+  let tx = window.innerWidth * 0.75;
+  let ty = 120;
+  let x = tx;
+  let y = ty;
+  let active = false;
+  let lastMoveAt = 0;
 
-  let tx = hud.clientWidth * 0.72;
-  let ty = hud.clientHeight * 0.32;
-  let x = tx, y = ty;
+  const TOP_TRACK_HEIGHT = 320; // only tracks near top portion of site
+  const EASE = 0.14;
+  const IDLE_FADE_MS = 900;
 
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
-  hero.addEventListener("mousemove", (e) => {
-    const hudRect = hud.getBoundingClientRect();
-    tx = clamp(e.clientX - hudRect.left, 18, hudRect.width - 18);
-    ty = clamp(e.clientY - hudRect.top, 18, hudRect.height - 18);
+  window.addEventListener("mousemove", (e) => {
+    if (e.clientY <= TOP_TRACK_HEIGHT) {
+      tx = e.clientX;
+      ty = e.clientY;
+      active = true;
+      lastMoveAt = performance.now();
+      glow.style.opacity = "1";
+    }
   });
 
-  hero.addEventListener("mouseleave", () => {
-    tx = hud.clientWidth * 0.72;
-    ty = hud.clientHeight * 0.32;
-  });
+  function animate(now) {
+    x += (tx - x) * EASE;
+    y += (ty - y) * EASE;
 
-  function render() {
-    x += (tx - x) * 0.14;
-    y += (ty - y) * 0.14;
+    // keep effect away from most text-heavy center by biasing to upper-right
+    const biasX = window.innerWidth * 0.12;
+    const clampedX = clamp(x + biasX, 0, window.innerWidth);
+    const clampedY = clamp(y, 0, TOP_TRACK_HEIGHT + 40);
 
-    ring.style.transform = `translate(${x - 60}px, ${y - 60}px)`;
-    cross.style.transform = `translate(${x - 41}px, ${y - 41}px)`;
+    glow.style.left = `${clampedX}px`;
+    glow.style.top = `${clampedY}px`;
 
-    const nx = (x / hud.clientWidth).toFixed(3);
-    const ny = (y / hud.clientHeight).toFixed(3);
-    coords.textContent = `x: ${nx}   y: ${ny}`;
+    if (active && now - lastMoveAt > IDLE_FADE_MS) {
+      active = false;
+      glow.style.opacity = "0";
+    }
 
-    requestAnimationFrame(render);
+    requestAnimationFrame(animate);
   }
 
-  render();
+  requestAnimationFrame(animate);
 })();
