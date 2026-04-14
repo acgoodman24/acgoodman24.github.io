@@ -43,11 +43,11 @@ document.querySelectorAll(".project-card").forEach((card) => {
     const y = e.clientY - rect.top;
 
     card.style.background = `
-      radial-gradient(circle at ${x}px ${y}px, rgba(125,211,252,0.08), transparent 60%)
+    radial-gradient(circle at ${x}px ${y}px, rgba(37,99,235,0.06), transparent 60%)
     `;
   });
 
   card.addEventListener("mouseleave", () => {
-    card.style.background = "#14161a";
+    card.style.background = "#ffffff";
   });
 });
