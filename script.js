@@ -95,15 +95,28 @@ if (hamburger && navLinks) {
     el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
   }
 
-  function setOpacity() {
-    core.style.opacity = (alpha * 0.95).toFixed(3);
-    r1.style.opacity = (alpha * 0.8).toFixed(3);
-    r2.style.opacity = (alpha * 0.55).toFixed(3);
-    r3.style.opacity = (alpha * 0.35).toFixed(3);
-    t1.style.opacity = (alpha * 0.5).toFixed(3);
-    t2.style.opacity = (alpha * 0.3).toFixed(3);
-    t3.style.opacity = (alpha * 0.18).toFixed(3);
+function setOpacity() {
+  // 0 at very bottom, 1 near top (with smooth clamp zone)
+  const heroH = hero.clientHeight || 1;
+  const lowerStart = heroH * 0.68; // start fading near lower third
+  const lowerEnd = heroH * 0.95;   // fully faded by near-bottom
+  let lowerFade = 1;
+
+  if (coreY >= lowerStart) {
+    lowerFade = 1 - (coreY - lowerStart) / (lowerEnd - lowerStart);
+    lowerFade = Math.max(0, Math.min(1, lowerFade));
   }
+
+  const a = alpha * lowerFade;
+
+  core.style.opacity = (a * 0.95).toFixed(3);
+  r1.style.opacity = (a * 0.8).toFixed(3);
+  r2.style.opacity = (a * 0.55).toFixed(3);
+  r3.style.opacity = (a * 0.35).toFixed(3);
+  t1.style.opacity = (a * 0.5).toFixed(3);
+  t2.style.opacity = (a * 0.3).toFixed(3);
+  t3.style.opacity = (a * 0.18).toFixed(3);
+}
 
   function animate(now) {
     if (targetAlpha === 1 && now - lastMoveTime > IDLE_DELAY) {
