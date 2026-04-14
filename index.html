@@ -3,251 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asher Goodman — Engineering Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Asher Goodman | Engineering Portfolio</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ── NAVIGATION ── -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <span class="nav-logo">AG</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="slideshow.html" class="nav-cta">Deep Dive →</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <h1>Asher Goodman</h1>
+          <p>Physics & Mathematics • Mechanical Engineering Focus</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <!-- ── HERO ── -->
-  <section id="hero">
-    <div class="hero-grid">
-      <div class="hero-label mono">Engineering Portfolio</div>
-      <h1 class="hero-name">Asher<br><em>Goodman</em></h1>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="mono label">Institution</span>
-          <span>University of Chicago</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="mono label">Major</span>
-          <span>Physics &amp; Mathematics</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="mono label">Role</span>
-          <span>Structures Engineer, Pulse-A CubeSat</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="mono label">Year</span>
-          <span>Junior, Class of 2027</span>
-        </div>
-      </div>
-      <div class="hero-actions">
-        <a href="slideshow.html" class="btn-primary">View Full Portfolio →</a>
-        <a href="resume.pdf" class="btn-secondary" target="_blank">Resume ↗</a>
-      </div>
-    </div>
-    <div class="hero-rule"></div>
-  </section>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Engineering portfolio</p>
+          <h2>Modeling, controls, and design—built with a focus on clarity and rigor.</h2>
+          <p class="lede">
+            I’m a physics and mathematics student focused on mechanical engineering, control systems,
+            and applied modeling. I like projects where the math actually shows up in the results.
+          </p>
 
-  <!-- ── ABOUT ── -->
-  <section id="about">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="mono section-num">01</span>
-        <h2>About</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-photo-wrap">
-          <!-- Replace src with your photo path -->
-          <div class="photo-placeholder">
-            <span class="mono">[ photo ]</span>
-            <!-- <img src="images/headshot.jpg" alt="Asher Goodman" /> -->
+          <div class="spec-row" aria-label="Quick specs">
+            <span class="spec"><span class="spec-k">Focus</span><span class="spec-v">Controls • Dynamics • CAD</span></span>
+            <span class="spec"><span class="spec-k">Tools</span><span class="spec-v">Python • MATLAB • Fusion 360</span></span>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="#projects">Projects</a>
+            <a class="btn btn-ghost" href="https://github.com/acgoodman24" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
-        <div class="about-text">
-          <p class="about-lead">
-            I'm a junior at the University of Chicago studying Physics and Mathematics, with a focus on applied engineering — from spacecraft structures to high-energy laser physics.
-          </p>
+
+        <aside class="hero-panel" aria-label="Profile">
+          <div class="photo-frame">
+            <img src="assets/profile.jpg" class="profile" alt="Portrait of Asher Goodman" />
+          </div>
+
+          <div class="meta">
+            <div class="meta-row">
+              <span class="meta-k">Location</span>
+              <span class="meta-v">United States</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-k">Interests</span>
+              <span class="meta-v">Control • Modeling • Mechanical Design</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-k">Status</span>
+              <span class="meta-v">Open to internships / research</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>About</h3>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
+
+        <div class="panel">
           <p>
-            My work spans structural design and FEA for the Pulse-A CubeSat program, experimental physics research at SLAC National Accelerator Laboratory, and the intersection of rigorous analysis with hands-on fabrication. I'm drawn to problems where precision matters and failure isn't an option.
+            I am a physics and mathematics student focused on mechanical engineering,
+            control systems, and applied modeling. I build projects that combine theory
+            with practical implementation.
           </p>
-          <p>
-            Outside the lab and machine shop, I'm interested in aerospace systems, inertial confinement fusion, and the engineering challenges that sit at the edge of what's currently possible.
-          </p>
-          <div class="skills-grid">
-            <div class="skill-group">
-              <span class="mono label">Tools</span>
-              <span>Fusion 360, FEA, Machining</span>
-            </div>
-            <div class="skill-group">
-              <span class="mono label">Domains</span>
-              <span>Structural Engineering, Laser Physics, Aerospace</span>
-            </div>
-            <div class="skill-group">
-              <span class="mono label">Languages</span>
-              <span>Python, MATLAB, LaTeX</span>
-            </div>
+
+          <div class="chips" aria-label="Highlights">
+            <span class="chip">Control systems</span>
+            <span class="chip">Differential equations</span>
+            <span class="chip">Numerical modeling</span>
+            <span class="chip">CAD / manufacturability</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── EXPERIENCE ── -->
-  <section id="experience">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="mono section-num">02</span>
-        <h2>Experience</h2>
-      </div>
-      <div class="timeline">
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Projects</h3>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <span class="mono timeline-date">2024 – Present</span>
-          </div>
-          <div class="timeline-right">
-            <div class="timeline-header">
-              <h3>Structures Engineer</h3>
-              <span class="timeline-org">UChicago Space Program — Pulse-A CubeSat</span>
+        <div class="grid">
+          <article class="card">
+            <div class="card-head">
+              <h4>Tuned Mass Damper System</h4>
+              <span class="badge">Modeling</span>
             </div>
-            <p>Design, model, machine, and perform finite element analysis on CubeSat structural components using Fusion 360 and campus fabrication resources. Responsible for ensuring components meet launch load requirements and interface constraints.</p>
-            <div class="timeline-tags">
-              <span>FEA</span><span>Fusion 360</span><span>CNC Machining</span><span>Structural Design</span>
+            <p>Modeled and analyzed a coupled oscillator system using differential equations.</p>
+
+            <div class="card-foot">
+              <!-- Replace href with your slideshow / deep-dive page when ready -->
+              <a class="detail-link" href="#" aria-label="View details for Tuned Mass Damper System">
+                View details <span aria-hidden="true">↗</span>
+              </a>
+              <span class="hint mono">ω, ζ, k, m</span>
             </div>
-            <!-- Add images below -->
-            <div class="exp-images" id="pulse-images">
-              <!-- <img src="images/cubesat-1.jpg" alt="CubeSat structure" /> -->
-              <!-- <img src="images/cubesat-2.jpg" alt="FEA model" /> -->
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h4>RLC Circuit Analysis</h4>
+              <span class="badge">Analysis</span>
             </div>
-          </div>
-        </div>
+            <p>Studied resonance, phase shifts, and quality factors in driven circuits.</p>
 
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <span class="mono timeline-date">Summer 2024</span>
-          </div>
-          <div class="timeline-right">
-            <div class="timeline-header">
-              <h3>Research Intern</h3>
-              <span class="timeline-org">SLAC National Accelerator Laboratory — HEDS Division</span>
+            <div class="card-foot">
+              <a class="detail-link" href="#" aria-label="View details for RLC Circuit Analysis">
+                View details <span aria-hidden="true">↗</span>
+              </a>
+              <span class="hint mono">Q, φ, f₀</span>
             </div>
-            <p>Contributed to a high-repetition-rate laser-irradiated water jet experiment with applications to inertial confinement fusion. Performed data analysis and supported experimental operations. Presented findings at the IFE-STAR Summer Symposium in Washington, D.C.</p>
-            <div class="timeline-tags">
-              <span>ICF Research</span><span>Laser Physics</span><span>Data Analysis</span><span>Conference Presentation</span>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h4>CAD Mechanical Design</h4>
+              <span class="badge">CAD</span>
             </div>
-            <div class="exp-images" id="slac-images">
-              <!-- <img src="images/slac-1.jpg" alt="SLAC experiment" /> -->
+            <p>Designed parts in Fusion 360 with manufacturability considerations.</p>
+
+            <div class="card-foot">
+              <a class="detail-link" href="#" aria-label="View details for CAD Mechanical Design">
+                View details <span aria-hidden="true">↗</span>
+              </a>
+              <span class="hint mono">DFM</span>
             </div>
-          </div>
+          </article>
         </div>
 
-        <!-- ── ADD MORE EXPERIENCE HERE ── -->
-        <!-- Copy the timeline-item block above and fill in details -->
-
+        <p class="subtle-note">
+          Deep dives are set up as slideshows/pages per project (link each card to the right one).
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── PROJECTS ── -->
-  <section id="projects">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="mono section-num">03</span>
-        <h2>Projects</h2>
-      </div>
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <!-- <img src="images/project-1.jpg" alt="Pulse-A Structure" /> -->
-            <div class="project-img-placeholder"><span class="mono">[ image ]</span></div>
-          </div>
-          <div class="project-body">
-            <span class="mono project-cat">Structures / CubeSat</span>
-            <h3>Pulse-A Primary Structure</h3>
-            <p>Design and FEA of primary load-bearing CubeSat components to withstand launch vibration and thermal cycling. Fabricated using campus CNC and manual machining resources.</p>
-            <a href="slideshow.html#pulse" class="project-link">View in Depth →</a>
-          </div>
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Skills</h3>
+          <div class="rule" aria-hidden="true"></div>
         </div>
 
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <!-- <img src="images/project-2.jpg" alt="SLAC Water Jet" /> -->
-            <div class="project-img-placeholder"><span class="mono">[ image ]</span></div>
+        <div class="grid grid-2">
+          <div class="panel">
+            <h4 class="panel-title">Software</h4>
+            <ul class="list">
+              <li>Python, MATLAB</li>
+              <li>Data analysis</li>
+              <li>Numerical modeling</li>
+            </ul>
           </div>
-          <div class="project-body">
-            <span class="mono project-cat">Experimental Physics / ICF</span>
-            <h3>Laser-Irradiated Water Jet Experiment</h3>
-            <p>Supported design and operation of a high-rep-rate laser target delivery system at SLAC. Analyzed shot data and contributed to characterization of hydrodynamic instabilities relevant to ICF.</p>
-            <a href="slideshow.html#slac" class="project-link">View in Depth →</a>
-          </div>
-        </div>
 
-        <!-- ── ADD MORE PROJECTS HERE ── -->
-        <div class="project-card project-card--add">
-          <div class="project-body">
-            <span class="mono project-cat">Your Next Project</span>
-            <h3>Add a project</h3>
-            <p>Copy a <code>project-card</code> block above, fill in your details, and drop in an image.</p>
+          <div class="panel">
+            <h4 class="panel-title">Design</h4>
+            <ul class="list">
+              <li>Fusion 360, SolidWorks</li>
+              <li>CAD for manufacturability</li>
+              <li>Documentation & iteration</li>
+            </ul>
           </div>
         </div>
+      </div>
+    </section>
 
-      </div>
-      <div class="projects-cta">
-        <a href="slideshow.html" class="btn-primary">See All Projects in Depth →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CONTACT ── -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="mono section-num">04</span>
-        <h2>Contact</h2>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-text">
-          <p class="contact-lead">Open to internship opportunities, research collaborations, and interesting conversations about aerospace, structures, and physics.</p>
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Contact</h3>
+          <div class="rule" aria-hidden="true"></div>
         </div>
-        <div class="contact-links">
-          <a href="mailto:your@email.com" class="contact-item">
-            <span class="mono label">Email</span>
-            <span class="contact-val">your@email.com ↗</span>
-          </a>
-          <a href="https://linkedin.com/in/yourprofile" class="contact-item" target="_blank">
-            <span class="mono label">LinkedIn</span>
-            <span class="contact-val">linkedin.com/in/yourprofile ↗</span>
-          </a>
-          <a href="https://github.com/yourusername" class="contact-item" target="_blank">
-            <span class="mono label">GitHub</span>
-            <span class="contact-val">github.com/yourusername ↗</span>
-          </a>
-          <a href="resume.pdf" class="contact-item" target="_blank">
-            <span class="mono label">Resume</span>
-            <span class="contact-val">Download PDF ↗</span>
-          </a>
+
+        <div class="panel contact">
+          <div class="contact-item">
+            <span class="meta-k">Email</span>
+            <a class="meta-v" href="mailto:your@email.com">your@email.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="meta-k">GitHub</span>
+            <a class="meta-v" href="https://github.com/acgoodman24" target="_blank" rel="noreferrer">github.com/acgoodman24</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-inner">
-      <span class="mono">Asher Goodman © 2025</span>
-      <span class="mono footer-right">Physics &amp; Mathematics — University of Chicago</span>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 Asher Goodman</p>
+      <p class="mono">Last updated: <span id="lastUpdated">2026-04-14</span></p>
     </div>
   </footer>
 
