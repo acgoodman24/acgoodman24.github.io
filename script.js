@@ -96,12 +96,13 @@ if (hamburger && navLinks) {
   }
 
 function setOpacity() {
-  // 0 at very bottom, 1 near top (with smooth clamp zone)
   const heroH = hero.clientHeight || 1;
-  const lowerStart = heroH * 0.80; // start fading near lower third
-  const lowerEnd = heroH * 0.95;   // fully faded by near-bottom
-  let lowerFade = 1;
 
+  // Fade starts lower and ends very close to bottom
+  const lowerStart = heroH * 0.82;
+  const lowerEnd = heroH * 0.99;
+
+  let lowerFade = 1;
   if (coreY >= lowerStart) {
     lowerFade = 1 - (coreY - lowerStart) / (lowerEnd - lowerStart);
     lowerFade = Math.max(0, Math.min(1, lowerFade));
@@ -117,6 +118,7 @@ function setOpacity() {
   t2.style.opacity = (a * 0.3).toFixed(3);
   t3.style.opacity = (a * 0.18).toFixed(3);
 }
+
 
   function animate(now) {
     if (targetAlpha === 1 && now - lastMoveTime > IDLE_DELAY) {
