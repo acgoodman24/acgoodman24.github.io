@@ -1,24 +1,53 @@
-// Smooth scroll (keeps your original behavior)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", e => {
-    const href = anchor.getAttribute("href");
-    if (!href || href === "#") return;
+// ── NAV SCROLL EFFECT ──
+const navbar = document.getElementById("navbar");
 
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // Optional: clean URL hash without jumping
-    history.pushState(null, "", href);
-  });
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) {
+    navbar.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
+  } else {
+    navbar.style.borderBottom = "1px solid rgba(255,255,255,0.04)";
+  }
 });
 
-// Optional: keep the footer "Last updated" correct without editing HTML
-(function () {
-  const el = document.getElementById("lastUpdated");
-  if (!el) return;
-  // Use the file's date if you want manual control; otherwise comment this out.
-  // el.textContent = new Date().toISOString().slice(0, 10);
-})();
+
+// ── SCROLL REVEAL (ENGINEERING STYLE: SUBTLE) ──
+const revealElements = document.querySelectorAll(
+  ".section-inner, .project-card, .timeline-item"
+);
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+
+revealElements.forEach((el) => {
+  el.style.opacity = 0;
+  el.style.transform = "translateY(20px)";
+  el.style.transition = "all 0.6s ease";
+  observer.observe(el);
+});
+
+
+// ── HOVER MICRO-INTERACTION (PROJECT CARDS) ──
+document.querySelectorAll(".project-card").forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.background = `
+      radial-gradient(circle at ${x}px ${y}px, rgba(125,211,252,0.08), transparent 60%)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.background = "#14161a";
+  });
+});
