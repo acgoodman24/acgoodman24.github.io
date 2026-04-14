@@ -96,13 +96,12 @@ if (hamburger && navLinks) {
   }
 
 function setOpacity() {
+  // Bottom-only fade, starting a little higher on the page
   const heroH = hero.clientHeight || 1;
-
-  // Fade starts lower and ends very close to bottom
-  const lowerStart = heroH * 0.82;
-  const lowerEnd = heroH * 0.99;
-
+  const lowerStart = heroH * 0.74; // starts fading a bit higher
+  const lowerEnd = heroH * 0.94;   // fully faded near bottom
   let lowerFade = 1;
+
   if (coreY >= lowerStart) {
     lowerFade = 1 - (coreY - lowerStart) / (lowerEnd - lowerStart);
     lowerFade = Math.max(0, Math.min(1, lowerFade));
