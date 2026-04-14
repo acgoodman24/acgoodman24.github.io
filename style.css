@@ -5,7 +5,7 @@
   --text:#e7edf7;
   --muted:#a8b3c6;
   --line:#2a3447;
-  --accent:#4070c3;
+  --accent:#90b9ff;
 }
 
 *{box-sizing:border-box}
@@ -53,7 +53,7 @@ body{
 }
 .hero-grid{display:grid; gap:16px; position:relative; z-index:2}
 .hero-label{
-  color:var(--accent);
+  color:var(--text);
   font-size:.82rem;
   text-transform:uppercase;
   letter-spacing:.08em;
@@ -88,6 +88,24 @@ body{
 .btn-primary{background:#1a2740; color:var(--text); border-color:#2f4777}
 .btn-secondary{background:transparent; color:var(--muted)}
 .btn-primary:hover,.btn-secondary:hover{color:var(--text)}
+
+.btn-slides{
+  background:linear-gradient(135deg,#2f6fff,#63a4ff);
+  border-color:#9bc2ff;
+  color:#ffffff;
+  box-shadow:
+    0 0 0 1px rgba(155,194,255,.28),
+    0 0 24px rgba(99,164,255,.45),
+    0 12px 34px rgba(47,111,255,.35);
+}
+.btn-slides:hover{
+  filter:brightness(1.1);
+  box-shadow:
+    0 0 0 1px rgba(180,214,255,.35),
+    0 0 34px rgba(120,180,255,.62),
+    0 16px 42px rgba(60,125,255,.45);
+}
+
 .hero-rule{height:1px; background:var(--line); margin-top:20px}
 
 /* FX restricted to hero section */
