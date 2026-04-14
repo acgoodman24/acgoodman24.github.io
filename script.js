@@ -98,7 +98,7 @@ if (hamburger && navLinks) {
 function setOpacity() {
   // 0 at very bottom, 1 near top (with smooth clamp zone)
   const heroH = hero.clientHeight || 1;
-  const lowerStart = heroH * 0.68; // start fading near lower third
+  const lowerStart = heroH * 0.80; // start fading near lower third
   const lowerEnd = heroH * 0.95;   // fully faded by near-bottom
   let lowerFade = 1;
 
