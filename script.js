@@ -24,10 +24,13 @@ if (hamburger && navLinks) {
   });
 }
 
-// Top-area cursor FX with fade in/out + 3 lagging rings
+// FX restricted to hero section
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
+
+  const hero = document.getElementById("hero");
+  if (!hero) return;
 
   const core = document.getElementById("fxCore");
   const r1 = document.getElementById("ring1");
@@ -39,8 +42,8 @@ if (hamburger && navLinks) {
 
   if (!core || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
 
-  let tx = window.innerWidth * 0.5;
-  let ty = 120;
+  let tx = hero.clientWidth * 0.5;
+  let ty = hero.clientHeight * 0.35;
 
   let coreX = tx, coreY = ty;
   let r1x = tx, r1y = ty;
@@ -54,15 +57,13 @@ if (hamburger && navLinks) {
   let prevTy = ty;
   let velocity = 0;
 
-  const TOP_TRACK_HEIGHT = 340;
-  const IDLE_DELAY = 180;    // after stop, begin fade out
-  const FADE_SPEED = 0.08;   // opacity lerp speed
+  const IDLE_DELAY = 180;
+  const FADE_SPEED = 0.08;
   let lastMoveTime = 0;
 
   let targetAlpha = 0;
   let alpha = 0;
 
-  // Easing values -> drag/lag
   const E_CORE = 0.30;
   const E_R1 = 0.16;
   const E_R2 = 0.11;
@@ -71,20 +72,23 @@ if (hamburger && navLinks) {
   const E_T2 = 0.09;
   const E_T3 = 0.06;
 
-  window.addEventListener("mousemove", (e) => {
-    if (e.clientY <= TOP_TRACK_HEIGHT) {
-      tx = e.clientX;
-      ty = e.clientY;
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    tx = e.clientX - rect.left;
+    ty = e.clientY - rect.top;
 
-      const dx = tx - prevTx;
-      const dy = ty - prevTy;
-      velocity = Math.min(42, Math.hypot(dx, dy));
-      prevTx = tx;
-      prevTy = ty;
+    const dx = tx - prevTx;
+    const dy = ty - prevTy;
+    velocity = Math.min(42, Math.hypot(dx, dy));
+    prevTx = tx;
+    prevTy = ty;
 
-      targetAlpha = 1;
-      lastMoveTime = performance.now();
-    }
+    targetAlpha = 1;
+    lastMoveTime = performance.now();
+  });
+
+  hero.addEventListener("mouseleave", () => {
+    targetAlpha = 0;
   });
 
   function move(el, x, y, scale = 1) {
@@ -93,11 +97,9 @@ if (hamburger && navLinks) {
 
   function setOpacity() {
     core.style.opacity = (alpha * 0.95).toFixed(3);
-
     r1.style.opacity = (alpha * 0.8).toFixed(3);
     r2.style.opacity = (alpha * 0.55).toFixed(3);
     r3.style.opacity = (alpha * 0.35).toFixed(3);
-
     t1.style.opacity = (alpha * 0.5).toFixed(3);
     t2.style.opacity = (alpha * 0.3).toFixed(3);
     t3.style.opacity = (alpha * 0.18).toFixed(3);
@@ -108,11 +110,9 @@ if (hamburger && navLinks) {
       targetAlpha = 0;
     }
 
-    // smooth fade in/out
     alpha += (targetAlpha - alpha) * FADE_SPEED;
     setOpacity();
 
-    // trailing motion
     coreX += (tx - coreX) * E_CORE;
     coreY += (ty - coreY) * E_CORE;
 
@@ -134,7 +134,6 @@ if (hamburger && navLinks) {
     t3x += (tx - t3x) * E_T3;
     t3y += (ty - t3y) * E_T3;
 
-    // subtle reactive scaling
     const s1 = 1 + Math.min(0.24, velocity / 120);
     const s2 = 1 + Math.min(0.18, velocity / 150);
     const s3 = 1 + Math.min(0.12, velocity / 170);
@@ -143,9 +142,6 @@ if (hamburger && navLinks) {
     move(r1, r1x, r1y, s1);
     move(r2, r2x, r2y, s2);
     move(r3, r3x, r3y, s3);
-
-    const leadX = (tx - coreX) * 0.18;
-    const leadY = (ty - coreY) * 0.18;
 
     move(t1, t1x, t1y, 1);
     move(t2, t2x, t2y, 1);

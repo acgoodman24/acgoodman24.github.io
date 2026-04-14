@@ -18,11 +18,6 @@ body{
 }
 
 .mono{font-family:"DM Mono",monospace}
-em{
-  font-family:"Cormorant Garamond",serif;
-  font-style:normal;
-  font-weight:700;
-}
 .name-last{
   font-weight:700;
   font-style:normal;
@@ -95,9 +90,9 @@ em{
 .btn-primary:hover,.btn-secondary:hover{color:var(--text)}
 .hero-rule{height:1px; background:var(--line); margin-top:20px}
 
-/* Cursor FX */
+/* FX restricted to hero section */
 .cursor-fx-layer{
-  position:fixed;
+  position:absolute;
   inset:0;
   z-index:1;
   pointer-events:none;
@@ -106,7 +101,7 @@ em{
 .fx-core,
 .fx-trail,
 .fx-ring{
-  position:fixed;
+  position:absolute;
   left:0; top:0;
   opacity:0;
   transform:translate(-50%,-50%);
