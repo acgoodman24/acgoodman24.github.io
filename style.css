@@ -91,28 +91,59 @@ em{
 .btn-primary:hover,.btn-secondary:hover{color:var(--text)}
 .hero-rule{height:1px; background:var(--line); margin-top:20px}
 
-/* Cursor glow (invisible until movement) */
-.cursor-glow-layer{
-  position:absolute;
+/* ========= Cursor FX (top area only, non-blocking) ========= */
+.cursor-fx-layer{
+  position:fixed;
   inset:0;
   z-index:1;
   pointer-events:none;
 }
-.cursor-glow{
-  position:absolute;
-  width:340px;
-  height:340px;
-  border-radius:50%;
+
+.fx-core,
+.fx-ring,
+.fx-spark,
+.fx-trail{
+  position:fixed;
+  left:0; top:0;
   opacity:0;
   transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle,
-      rgba(144,185,255,.20) 0%,
-      rgba(144,185,255,.10) 28%,
-      rgba(144,185,255,.04) 52%,
-      rgba(144,185,255,0) 72%);
+  will-change:transform, opacity;
+  pointer-events:none;
+}
+
+.fx-core{
+  width:18px; height:18px; border-radius:50%;
+  background:radial-gradient(circle, rgba(173,205,255,.95) 0%, rgba(144,185,255,.45) 45%, rgba(144,185,255,0) 75%);
+  filter:blur(.4px);
+  mix-blend-mode:screen;
+}
+
+.fx-ring{
+  width:120px; height:120px; border-radius:50%;
+  border:1px solid rgba(144,185,255,.35);
+  box-shadow:0 0 25px rgba(144,185,255,.18), inset 0 0 18px rgba(144,185,255,.08);
+  mix-blend-mode:screen;
+}
+
+.fx-spark{
+  width:7px; height:7px; border-radius:50%;
+  background:rgba(185,220,255,.95);
+  box-shadow:0 0 14px rgba(144,185,255,.8);
+  mix-blend-mode:screen;
+}
+
+.fx-trail{
+  width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle, rgba(144,185,255,.15) 0%, rgba(144,185,255,.06) 35%, rgba(144,185,255,0) 70%);
   filter:blur(1px);
-  transition:opacity .28s ease;
+  mix-blend-mode:screen;
+}
+.fx-trail-2{ width:280px; height:280px; opacity:.0; }
+.fx-trail-3{ width:340px; height:340px; opacity:.0; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .cursor-fx-layer{ display:none; }
 }
 
 section{padding:18px 0}
@@ -181,7 +212,7 @@ footer{border-top:1px solid var(--line); margin-top:28px}
   .hero-meta{grid-template-columns:1fr}
   .timeline-item{grid-template-columns:1fr}
   .timeline-left{border-right:none; border-bottom:1px solid var(--line)}
-  .cursor-glow-layer{display:none;}
+  .cursor-fx-layer{display:none;}
   .nav-links{
     position:absolute; right:20px; top:58px; width:min(320px,calc(100vw - 40px));
     background:#111823; border:1px solid var(--line); border-radius:10px;
