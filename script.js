@@ -30,7 +30,6 @@ if (hamburger && navLinks) {
   if (reduceMotion) return;
 
   const core = document.getElementById("fxCore");
-  const spark = document.getElementById("fxSpark");
   const r1 = document.getElementById("ring1");
   const r2 = document.getElementById("ring2");
   const r3 = document.getElementById("ring3");
@@ -38,13 +37,12 @@ if (hamburger && navLinks) {
   const t2 = document.getElementById("trail2");
   const t3 = document.getElementById("trail3");
 
-  if (!core || !spark || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
+  if (!core || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
 
   let tx = window.innerWidth * 0.5;
   let ty = 120;
 
   let coreX = tx, coreY = ty;
-  let sparkX = tx, sparkY = ty;
   let r1x = tx, r1y = ty;
   let r2x = tx, r2y = ty;
   let r3x = tx, r3y = ty;
@@ -66,7 +64,6 @@ if (hamburger && navLinks) {
 
   // Easing values -> drag/lag
   const E_CORE = 0.30;
-  const E_SPARK = 0.24;
   const E_R1 = 0.16;
   const E_R2 = 0.11;
   const E_R3 = 0.08;
@@ -96,7 +93,6 @@ if (hamburger && navLinks) {
 
   function setOpacity() {
     core.style.opacity = (alpha * 0.95).toFixed(3);
-    spark.style.opacity = (alpha * 0.9).toFixed(3);
 
     r1.style.opacity = (alpha * 0.8).toFixed(3);
     r2.style.opacity = (alpha * 0.55).toFixed(3);
@@ -119,9 +115,6 @@ if (hamburger && navLinks) {
     // trailing motion
     coreX += (tx - coreX) * E_CORE;
     coreY += (ty - coreY) * E_CORE;
-
-    sparkX += (tx - sparkX) * E_SPARK;
-    sparkY += (ty - sparkY) * E_SPARK;
 
     r1x += (tx - r1x) * E_R1;
     r1y += (ty - r1y) * E_R1;
@@ -153,7 +146,6 @@ if (hamburger && navLinks) {
 
     const leadX = (tx - coreX) * 0.18;
     const leadY = (ty - coreY) * 0.18;
-    move(spark, sparkX + leadX, sparkY + leadY, 1);
 
     move(t1, t1x, t1y, 1);
     move(t2, t2x, t2y, 1);

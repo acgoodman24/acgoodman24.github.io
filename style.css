@@ -104,7 +104,6 @@ em{
 }
 
 .fx-core,
-.fx-spark,
 .fx-trail,
 .fx-ring{
   position:fixed;
@@ -138,13 +137,6 @@ em{
 .fx-ring-3{
   width:188px; height:188px;
   border-color:rgba(144,185,255,.16);
-}
-
-.fx-spark{
-  width:7px; height:7px; border-radius:50%;
-  background:rgba(185,220,255,.95);
-  box-shadow:0 0 14px rgba(144,185,255,.8);
-  mix-blend-mode:screen;
 }
 
 .fx-trail{
