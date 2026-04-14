@@ -1,76 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Asher Goodman | Engineering Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <h1>Asher Goodman</h1>
-  <p>Physics & Mathematics | Aspiring Mechanical Engineer</p>
-</header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">AG</div>
+        <div class="brand-text">
+          <h1>Asher Goodman</h1>
+          <p>Physics & Mathematics • Aspiring Mechanical Engineer</p>
+        </div>
+      </div>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#skills">Skills</a>
-  <a href="#contact">Contact</a>
-</nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn btn-ghost" type="button" aria-label="Toggle dark mode">
+          Theme
+        </button>
+        <a class="btn btn-primary" href="#contact">Contact</a>
+      </div>
+    </div>
 
-<section id="about">
-  <h2>About Me</h2>
-  <img src="assets/profile.jpg" class="profile">
-  <p>
-    I am a physics and mathematics student focused on mechanical engineering,
-    control systems, and applied modeling. I build projects that combine theory
-    with practical implementation.
-  </p>
-</section>
+    <nav class="top-nav" aria-label="Primary">
+      <div class="container nav-inner">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-<section id="projects">
-  <h2>Projects</h2>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Engineering Portfolio</p>
+          <h2>Building practical systems from math, physics, and control theory.</h2>
+          <p class="lede">
+            I’m focused on mechanical engineering, modeling, and control systems—turning
+            theory into designs, simulations, and prototypes.
+          </p>
 
-  <div class="card">
-    <h3>Tuned Mass Damper System</h3>
-    <p>Modeled and analyzed a coupled oscillator system using differential equations.</p>
-  </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View projects</a>
+            <a class="btn btn-ghost" href="https://github.com/acgoodman24" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
 
-  <div class="card">
-    <h3>RLC Circuit Analysis</h3>
-    <p>Studied resonance, phase shifts, and quality factors in driven circuits.</p>
-  </div>
+          <div class="quick-facts" role="list">
+            <div class="fact" role="listitem">
+              <span class="fact-label">Focus</span>
+              <span class="fact-value">Controls • Modeling • Mechanical Design</span>
+            </div>
+            <div class="fact" role="listitem">
+              <span class="fact-label">Tools</span>
+              <span class="fact-value">Python • MATLAB • Fusion 360 • SolidWorks</span>
+            </div>
+          </div>
+        </div>
 
-  <div class="card">
-    <h3>CAD Mechanical Design</h3>
-    <p>Designed parts in Fusion 360 with manufacturability considerations.</p>
-  </div>
+        <div class="hero-card" aria-label="Profile">
+          <img src="assets/profile.jpg" alt="Portrait of Asher Goodman" class="profile-img" />
+          <div class="hero-card-meta">
+            <p class="meta-title">Asher Goodman</p>
+            <p class="meta-sub">Mechanical engineering interests, simulation & design</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </section>
 
-</section>
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>About</h3>
+          <p>What I’m working toward and what I like building.</p>
+        </div>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li>Python, MATLAB</li>
-    <li>Fusion 360, SolidWorks</li>
-    <li>Numerical Modeling</li>
-    <li>Data Analysis</li>
-  </ul>
-</section>
+        <div class="panel">
+          <p>
+            I am a physics and mathematics student focused on mechanical engineering,
+            control systems, and applied modeling. I build projects that combine theory
+            with practical implementation.
+          </p>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: your@email.com</p>
-  <p>GitHub: github.com/acgoodman24</p>
-</section>
+          <div class="chips" aria-label="Highlights">
+            <span class="chip">Control Systems</span>
+            <span class="chip">Dynamics</span>
+            <span class="chip">CAD / DFM</span>
+            <span class="chip">Numerical Methods</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <p>© 2026 Asher Goodman</p>
-</footer>
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Projects</h3>
+          <p>Selected work (add links/screenshots as you publish them).</p>
+        </div>
 
-<script src="script.js"></script>
+        <div class="grid">
+          <article class="card">
+            <div class="card-top">
+              <h4>Tuned Mass Damper System</h4>
+              <span class="tag">Modeling</span>
+            </div>
+            <p>Modeled and analyzed a coupled oscillator system using differential equations.</p>
+            <div class="card-actions">
+              <a class="link" href="#" aria-label="Add a project link for Tuned Mass Damper System">Add link →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h4>RLC Circuit Analysis</h4>
+              <span class="tag">Analysis</span>
+            </div>
+            <p>Studied resonance, phase shifts, and quality factors in driven circuits.</p>
+            <div class="card-actions">
+              <a class="link" href="#" aria-label="Add a project link for RLC Circuit Analysis">Add link →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h4>CAD Mechanical Design</h4>
+              <span class="tag">CAD</span>
+            </div>
+            <p>Designed parts in Fusion 360 with manufacturability considerations.</p>
+            <div class="card-actions">
+              <a class="link" href="#" aria-label="Add a project link for CAD Mechanical Design">Add link →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Skills</h3>
+          <p>A quick snapshot of tools and strengths.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card soft">
+            <h4>Technical</h4>
+            <ul class="clean-list">
+              <li>Python, MATLAB</li>
+              <li>Numerical modeling & simulation</li>
+              <li>Data analysis & visualization</li>
+            </ul>
+          </div>
+
+          <div class="card soft">
+            <h4>Design</h4>
+            <ul class="clean-list">
+              <li>Fusion 360, SolidWorks</li>
+              <li>CAD for manufacturability (DFM mindset)</li>
+              <li>Documentation and presentation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h3>Contact</h3>
+          <p>Best ways to reach me.</p>
+        </div>
+
+        <div class="panel contact-panel">
+          <div class="contact-row">
+            <div>
+              <p class="label">Email</p>
+              <p class="value">
+                <!-- TODO: replace with your real email -->
+                <a href="mailto:your@email.com">your@email.com</a>
+              </p>
+            </div>
+            <div>
+              <p class="label">GitHub</p>
+              <p class="value">
+                <a href="https://github.com/acgoodman24" target="_blank" rel="noreferrer">github.com/acgoodman24</a>
+              </p>
+            </div>
+          </div>
+
+          <p class="fineprint">
+            Tip: add a resume PDF link here (e.g., <span class="mono">assets/Asher_Goodman_Resume.pdf</span>).
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 Asher Goodman</p>
+      <a class="link" href="#main">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
