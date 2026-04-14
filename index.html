@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -31,19 +31,22 @@
   </nav>
 
   <section id="hero">
-    <!-- Invisible until movement -->
     <div class="cursor-fx-layer" aria-hidden="true">
       <div class="fx-trail fx-trail-1" id="trail1"></div>
       <div class="fx-trail fx-trail-2" id="trail2"></div>
       <div class="fx-trail fx-trail-3" id="trail3"></div>
+
+      <div class="fx-ring fx-ring-1" id="ring1"></div>
+      <div class="fx-ring fx-ring-2" id="ring2"></div>
+      <div class="fx-ring fx-ring-3" id="ring3"></div>
+
       <div class="fx-core" id="fxCore"></div>
-      <div class="fx-ring" id="fxRing"></div>
       <div class="fx-spark" id="fxSpark"></div>
     </div>
 
     <div class="hero-grid">
       <div class="hero-label mono">Engineering Portfolio</div>
-      <h1 class="hero-name">Asher <em>Goodman</em></h1>
+      <h1 class="hero-name">Asher <span class="name-last">Goodman</span></h1>
 
       <div class="hero-meta">
         <div class="hero-meta-item">

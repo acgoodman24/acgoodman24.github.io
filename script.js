@@ -24,58 +24,55 @@ if (hamburger && navLinks) {
   });
 }
 
-// Top-portion cursor FX with lag/trailing motion
+// Top-area cursor FX with fade in/out + 3 lagging rings
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
   const core = document.getElementById("fxCore");
-  const ring = document.getElementById("fxRing");
   const spark = document.getElementById("fxSpark");
+  const r1 = document.getElementById("ring1");
+  const r2 = document.getElementById("ring2");
+  const r3 = document.getElementById("ring3");
   const t1 = document.getElementById("trail1");
   const t2 = document.getElementById("trail2");
   const t3 = document.getElementById("trail3");
 
-  if (!core || !ring || !spark || !t1 || !t2 || !t3) return;
+  if (!core || !spark || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
 
   let tx = window.innerWidth * 0.5;
   let ty = 120;
 
   let coreX = tx, coreY = ty;
-  let ringX = tx, ringY = ty;
   let sparkX = tx, sparkY = ty;
-  let t1X = tx, t1Y = ty;
-  let t2X = tx, t2Y = ty;
-  let t3X = tx, t3Y = ty;
+  let r1x = tx, r1y = ty;
+  let r2x = tx, r2y = ty;
+  let r3x = tx, r3y = ty;
+  let t1x = tx, t1y = ty;
+  let t2x = tx, t2y = ty;
+  let t3x = tx, t3y = ty;
 
   let prevTx = tx;
   let prevTy = ty;
   let velocity = 0;
 
   const TOP_TRACK_HEIGHT = 340;
-  const ACTIVE_FADE_DELAY = 850;
+  const IDLE_DELAY = 180;    // after stop, begin fade out
+  const FADE_SPEED = 0.08;   // opacity lerp speed
   let lastMoveTime = 0;
-  let active = false;
 
-  // Different easing = drag/lag feel
-  const EASE_CORE = 0.28;
-  const EASE_RING = 0.16;
-  const EASE_SPARK = 0.22;
-  const EASE_T1 = 0.14;
-  const EASE_T2 = 0.09;
-  const EASE_T3 = 0.06;
+  let targetAlpha = 0;
+  let alpha = 0;
 
-  function setOpacity(v){
-    const o = String(v);
-    core.style.opacity = o;
-    ring.style.opacity = String(v * 0.88);
-    spark.style.opacity = String(v * 0.95);
-    t1.style.opacity = String(v * 0.55);
-    t2.style.opacity = String(v * 0.35);
-    t3.style.opacity = String(v * 0.22);
-  }
-
-  setOpacity(0);
+  // Easing values -> drag/lag
+  const E_CORE = 0.30;
+  const E_SPARK = 0.24;
+  const E_R1 = 0.16;
+  const E_R2 = 0.11;
+  const E_R3 = 0.08;
+  const E_T1 = 0.13;
+  const E_T2 = 0.09;
+  const E_T3 = 0.06;
 
   window.addEventListener("mousemove", (e) => {
     if (e.clientY <= TOP_TRACK_HEIGHT) {
@@ -84,64 +81,85 @@ if (hamburger && navLinks) {
 
       const dx = tx - prevTx;
       const dy = ty - prevTy;
-      velocity = Math.min(40, Math.hypot(dx, dy));
-
+      velocity = Math.min(42, Math.hypot(dx, dy));
       prevTx = tx;
       prevTy = ty;
 
-      active = true;
+      targetAlpha = 1;
       lastMoveTime = performance.now();
-      setOpacity(1);
     }
   });
 
-  function move(el, x, y){
-    el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+  function move(el, x, y, scale = 1) {
+    el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
   }
 
-  function animate(now){
-    // fade out when idle
-    if (active && now - lastMoveTime > ACTIVE_FADE_DELAY){
-      active = false;
-      setOpacity(0);
+  function setOpacity() {
+    core.style.opacity = (alpha * 0.95).toFixed(3);
+    spark.style.opacity = (alpha * 0.9).toFixed(3);
+
+    r1.style.opacity = (alpha * 0.8).toFixed(3);
+    r2.style.opacity = (alpha * 0.55).toFixed(3);
+    r3.style.opacity = (alpha * 0.35).toFixed(3);
+
+    t1.style.opacity = (alpha * 0.5).toFixed(3);
+    t2.style.opacity = (alpha * 0.3).toFixed(3);
+    t3.style.opacity = (alpha * 0.18).toFixed(3);
+  }
+
+  function animate(now) {
+    if (targetAlpha === 1 && now - lastMoveTime > IDLE_DELAY) {
+      targetAlpha = 0;
     }
 
-    // spring follow with different lag layers
-    coreX += (tx - coreX) * EASE_CORE;
-    coreY += (ty - coreY) * EASE_CORE;
+    // smooth fade in/out
+    alpha += (targetAlpha - alpha) * FADE_SPEED;
+    setOpacity();
 
-    ringX += (tx - ringX) * EASE_RING;
-    ringY += (ty - ringY) * EASE_RING;
+    // trailing motion
+    coreX += (tx - coreX) * E_CORE;
+    coreY += (ty - coreY) * E_CORE;
 
-    sparkX += (tx - sparkX) * EASE_SPARK;
-    sparkY += (ty - sparkY) * EASE_SPARK;
+    sparkX += (tx - sparkX) * E_SPARK;
+    sparkY += (ty - sparkY) * E_SPARK;
 
-    t1X += (tx - t1X) * EASE_T1;
-    t1Y += (ty - t1Y) * EASE_T1;
+    r1x += (tx - r1x) * E_R1;
+    r1y += (ty - r1y) * E_R1;
 
-    t2X += (tx - t2X) * EASE_T2;
-    t2Y += (ty - t2Y) * EASE_T2;
+    r2x += (tx - r2x) * E_R2;
+    r2y += (ty - r2y) * E_R2;
 
-    t3X += (tx - t3X) * EASE_T3;
-    t3Y += (ty - t3Y) * EASE_T3;
+    r3x += (tx - r3x) * E_R3;
+    r3y += (ty - r3y) * E_R3;
 
-    // ring grows slightly with speed for "exciting but subtle" response
-    const ringScale = 1 + Math.min(0.35, velocity / 120);
-    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${ringScale})`;
+    t1x += (tx - t1x) * E_T1;
+    t1y += (ty - t1y) * E_T1;
 
-    // spark leads just a touch in movement direction
+    t2x += (tx - t2x) * E_T2;
+    t2y += (ty - t2y) * E_T2;
+
+    t3x += (tx - t3x) * E_T3;
+    t3y += (ty - t3y) * E_T3;
+
+    // subtle reactive scaling
+    const s1 = 1 + Math.min(0.24, velocity / 120);
+    const s2 = 1 + Math.min(0.18, velocity / 150);
+    const s3 = 1 + Math.min(0.12, velocity / 170);
+
+    move(core, coreX, coreY, 1);
+    move(r1, r1x, r1y, s1);
+    move(r2, r2x, r2y, s2);
+    move(r3, r3x, r3y, s3);
+
     const leadX = (tx - coreX) * 0.18;
     const leadY = (ty - coreY) * 0.18;
-    move(spark, sparkX + leadX, sparkY + leadY);
+    move(spark, sparkX + leadX, sparkY + leadY, 1);
 
-    move(core, coreX, coreY);
-    move(t1, t1X, t1Y);
-    move(t2, t2X, t2Y);
-    move(t3, t3X, t3Y);
+    move(t1, t1x, t1y, 1);
+    move(t2, t2x, t2y, 1);
+    move(t3, t3x, t3y, 1);
 
-    // damp velocity over time
     velocity *= 0.92;
-
     requestAnimationFrame(animate);
   }
 

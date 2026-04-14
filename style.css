@@ -20,8 +20,12 @@ body{
 .mono{font-family:"DM Mono",monospace}
 em{
   font-family:"Cormorant Garamond",serif;
-  font-style:italic;
-  font-weight:300;
+  font-style:normal;
+  font-weight:700;
+}
+.name-last{
+  font-weight:700;
+  font-style:normal;
 }
 
 #navbar{
@@ -91,7 +95,7 @@ em{
 .btn-primary:hover,.btn-secondary:hover{color:var(--text)}
 .hero-rule{height:1px; background:var(--line); margin-top:20px}
 
-/* ========= Cursor FX (top area only, non-blocking) ========= */
+/* Cursor FX */
 .cursor-fx-layer{
   position:fixed;
   inset:0;
@@ -100,9 +104,9 @@ em{
 }
 
 .fx-core,
-.fx-ring,
 .fx-spark,
-.fx-trail{
+.fx-trail,
+.fx-ring{
   position:fixed;
   left:0; top:0;
   opacity:0;
@@ -119,10 +123,21 @@ em{
 }
 
 .fx-ring{
-  width:120px; height:120px; border-radius:50%;
-  border:1px solid rgba(144,185,255,.35);
-  box-shadow:0 0 25px rgba(144,185,255,.18), inset 0 0 18px rgba(144,185,255,.08);
+  border-radius:50%;
+  border:1px solid rgba(144,185,255,.34);
   mix-blend-mode:screen;
+}
+.fx-ring-1{
+  width:108px; height:108px;
+  box-shadow:0 0 20px rgba(144,185,255,.18), inset 0 0 16px rgba(144,185,255,.08);
+}
+.fx-ring-2{
+  width:146px; height:146px;
+  border-color:rgba(144,185,255,.24);
+}
+.fx-ring-3{
+  width:188px; height:188px;
+  border-color:rgba(144,185,255,.16);
 }
 
 .fx-spark{
@@ -138,10 +153,9 @@ em{
   filter:blur(1px);
   mix-blend-mode:screen;
 }
-.fx-trail-2{ width:280px; height:280px; opacity:.0; }
-.fx-trail-3{ width:340px; height:340px; opacity:.0; }
+.fx-trail-2{ width:280px; height:280px; }
+.fx-trail-3{ width:340px; height:340px; }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
   .cursor-fx-layer{ display:none; }
 }
