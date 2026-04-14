@@ -1,93 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asher Goodman | Engineering Portfolio</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asher Goodman — Engineering Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Asher Goodman</h1>
-    <p class="hero-title">Engineering Portfolio</p>
-    <p class="subtitle">Physics & Mathematics | Aspiring Mechanical Engineer</p>
-  </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">AG</span>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="slideshow.html" class="nav-cta">Deep Dive →</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <img src="assets/profile.jpg" class="profile" alt="Profile photo of Asher Goodman">
-    <p>
-      I am a physics and mathematics student focused on mechanical engineering,
-      control systems, and applied modeling. I build projects that combine theory
-      with practical implementation.
-    </p>
+  <section id="hero">
+    <div class="hero-grid">
+      <div class="hero-label mono">Engineering Portfolio</div>
+      <h1 class="hero-name">Asher <em>Goodman</em></h1>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="mono label">Focus</span>
+          <span>Mechanical Engineering + Applied Modeling</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="mono label">Discipline</span>
+          <span>Physics &amp; Mathematics</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="mono label">Tools</span>
+          <span>Python, MATLAB, Fusion 360, SolidWorks</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="mono label">Location</span>
+          <span>United States</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="assets/Asher_Goodman_Resume.pdf" class="btn-secondary" target="_blank" rel="noreferrer">Resume ↗</a>
+      </div>
+    </div>
+    <div class="hero-rule"></div>
   </section>
 
-  <!-- Projects placed above Experience -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="mono section-num">01</span>
+        <h2>About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo-wrap">
+          <img src="assets/profile.jpg" alt="Asher Goodman" class="about-photo">
+        </div>
+        <div class="about-text">
+          <p class="about-lead">
+            I am a physics and mathematics student focused on mechanical engineering,
+            control systems, and applied modeling.
+          </p>
+          <p>
+            I build projects that combine theoretical rigor with practical implementation.
+            I’m especially interested in dynamics, system behavior, and design workflows
+            where analysis directly informs engineering decisions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects above Experience (as requested) -->
   <section id="projects">
-    <h2>Projects</h2>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="mono section-num">02</span>
+        <h2>Projects</h2>
+      </div>
 
-    <div class="card">
-      <h3>Tuned Mass Damper System</h3>
-      <p>Modeled and analyzed a coupled oscillator system using differential equations.</p>
-    </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-body">
+            <span class="mono project-cat">Dynamics / Modeling</span>
+            <h3>Tuned Mass Damper System</h3>
+            <p>Modeled and analyzed a coupled oscillator system using differential equations.</p>
+            <a href="slideshow.html#tmd" class="project-link">View in Depth →</a>
+          </div>
+        </div>
 
-    <div class="card">
-      <h3>RLC Circuit Analysis</h3>
-      <p>Studied resonance, phase shifts, and quality factors in driven circuits.</p>
-    </div>
+        <div class="project-card">
+          <div class="project-body">
+            <span class="mono project-cat">Circuits / Analysis</span>
+            <h3>RLC Circuit Analysis</h3>
+            <p>Studied resonance, phase shifts, and quality factors in driven circuits.</p>
+            <a href="slideshow.html#rlc" class="project-link">View in Depth →</a>
+          </div>
+        </div>
 
-    <div class="card">
-      <h3>CAD Mechanical Design</h3>
-      <p>Designed parts in Fusion 360 with manufacturability considerations.</p>
+        <div class="project-card">
+          <div class="project-body">
+            <span class="mono project-cat">CAD / Mechanical</span>
+            <h3>CAD Mechanical Design</h3>
+            <p>Designed parts in Fusion 360 with manufacturability considerations.</p>
+            <a href="slideshow.html#cad" class="project-link">View in Depth →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-cta">
+        <a href="slideshow.html" class="btn-primary">See Full Project Slides →</a>
+      </div>
     </div>
   </section>
 
   <section id="experience">
-    <h2>Experience</h2>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="mono section-num">03</span>
+        <h2>Experience</h2>
+      </div>
 
-    <div class="card">
-      <h3>Research / Internship Role</h3>
-      <p>Add your lab, internship, or engineering experience here.</p>
-    </div>
-
-    <div class="card">
-      <h3>Technical Team / Leadership</h3>
-      <p>Add clubs, teams, or project leadership experience here.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <span class="mono timeline-date">Current</span>
+          </div>
+          <div class="timeline-right">
+            <div class="timeline-header">
+              <h3>Engineering / Research Experience</h3>
+              <span class="timeline-org">Add role title and organization</span>
+            </div>
+            <p>Add your experience details here (scope, methods, outcomes, tools).</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python, MATLAB</li>
-      <li>Fusion 360, SolidWorks</li>
-      <li>Numerical Modeling</li>
-      <li>Data Analysis</li>
-    </ul>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="mono section-num">04</span>
+        <h2>Skills</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <span class="mono label">Software</span>
+          <span>Python, MATLAB</span>
+        </div>
+        <div class="skill-group">
+          <span class="mono label">Design</span>
+          <span>Fusion 360, SolidWorks</span>
+        </div>
+        <div class="skill-group">
+          <span class="mono label">Methods</span>
+          <span>Numerical Modeling, Data Analysis</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-    <p>GitHub: <a href="https://github.com/acgoodman24" target="_blank" rel="noreferrer">github.com/acgoodman24</a></p>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="mono section-num">05</span>
+        <h2>Contact</h2>
+      </div>
+
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-item">
+          <span class="mono label">Email</span>
+          <span class="contact-val">your@email.com ↗</span>
+        </a>
+        <a href="https://github.com/acgoodman24" class="contact-item" target="_blank" rel="noreferrer">
+          <span class="mono label">GitHub</span>
+          <span class="contact-val">github.com/acgoodman24 ↗</span>
+        </a>
+        <a href="assets/Asher_Goodman_Resume.pdf" class="contact-item" target="_blank" rel="noreferrer">
+          <span class="mono label">Resume</span>
+          <span class="contact-val">Download PDF ↗</span>
+        </a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>© 2026 Asher Goodman</p>
+    <div class="footer-inner">
+      <span class="mono">Asher Goodman © 2026</span>
+      <span class="mono footer-right">Engineering Portfolio</span>
+    </div>
   </footer>
 
   <script src="script.js"></script>
