@@ -18,7 +18,11 @@ body{
 }
 
 .mono{font-family:"DM Mono",monospace}
-em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400}
+em{
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  font-weight:300; /* unbold Goodman */
+}
 
 #navbar{
   position:sticky; top:0; z-index:50;
@@ -45,8 +49,10 @@ em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400}
 
 #hero{
   max-width:1100px; margin:0 auto; padding:46px 20px 30px;
+  position:relative;
+  overflow:hidden;
 }
-.hero-grid{display:grid; gap:16px}
+.hero-grid{display:grid; gap:16px; position:relative; z-index:2}
 .hero-label{
   color:var(--accent);
   font-size:.82rem;
@@ -57,8 +63,8 @@ em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400}
   margin:0;
   font-family:"DM Sans",sans-serif;
   font-weight:500;
-  line-height:.94;
-  font-size:clamp(3rem,10vw,7.2rem);
+  line-height:.96;
+  font-size:clamp(2.3rem,7vw,5.2rem); /* smaller name */
 }
 .hero-meta{
   display:grid;
@@ -85,13 +91,34 @@ em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400}
 .btn-primary:hover,.btn-secondary:hover{color:var(--text)}
 .hero-rule{height:1px; background:var(--line); margin-top:20px}
 
+/* top-right mouse tracking orb */
+.hero-orb-wrap{
+  position:absolute;
+  right:0;
+  top:0;
+  width:44%;
+  height:240px;
+  pointer-events:none;
+  z-index:1;
+}
+.hero-orb{
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  left:60%;
+  top:20%;
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(circle at 35% 35%, rgba(144,185,255,.45), rgba(144,185,255,.12) 45%, rgba(144,185,255,0) 70%);
+  filter: blur(1px);
+  transition: transform 120ms linear, opacity 180ms ease;
+  opacity:.85;
+}
+
 section{padding:18px 0}
 .section-inner{max-width:1100px; margin:0 auto; padding:0 20px}
-.section-header{
-  display:grid; grid-template-columns:42px 1fr; align-items:end; gap:10px;
-  margin-bottom:14px;
-}
-.section-num{color:var(--muted); font-size:.78rem}
+.section-header{display:block; margin-bottom:14px} /* no small numbers */
 h2{
   margin:0;
   font-family:"DM Sans",sans-serif;
@@ -108,16 +135,13 @@ h2{
 .about-text p{color:var(--muted); line-height:1.6}
 
 .projects-grid{display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr))}
-.project-card{
-  border:1px solid var(--line); border-radius:12px; background:var(--panel);
-}
+.project-card{border:1px solid var(--line); border-radius:12px; background:var(--panel)}
 .project-body{padding:14px}
 .project-cat{color:var(--muted); font-size:.74rem; text-transform:uppercase}
 .project-card h3{margin:.35rem 0 .45rem; font-size:1.02rem}
 .project-card p{margin:0 0 .6rem; color:var(--muted); line-height:1.55}
 .project-link{color:var(--accent); text-decoration:none}
 .project-link:hover{text-decoration:underline}
-.projects-cta{margin-top:14px}
 
 .timeline{
   border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel);
@@ -131,18 +155,13 @@ h2{
 .timeline-org{color:var(--muted); font-size:.9rem}
 .timeline-right p{margin:0; color:var(--muted); line-height:1.6}
 
-.skills-grid{
-  display:grid; gap:10px;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-}
+.skills-grid{display:grid; gap:10px; grid-template-columns:repeat(3,minmax(0,1fr))}
 .skill-group{
   border:1px solid var(--line); border-radius:10px; background:var(--panel);
   padding:12px; display:grid; gap:4px;
 }
 
-.contact-links{
-  display:grid; gap:10px;
-}
+.contact-links{display:grid; gap:10px}
 .contact-item{
   text-decoration:none; color:var(--text);
   border:1px solid var(--line); border-radius:10px; background:var(--panel);
@@ -151,9 +170,7 @@ h2{
 .contact-val{color:var(--muted)}
 .contact-item:hover .contact-val{color:var(--text)}
 
-footer{
-  border-top:1px solid var(--line); margin-top:28px;
-}
+footer{border-top:1px solid var(--line); margin-top:28px}
 .footer-inner{
   max-width:1100px; margin:0 auto; padding:14px 20px;
   display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:.8rem;
@@ -165,6 +182,7 @@ footer{
   .hero-meta{grid-template-columns:1fr}
   .timeline-item{grid-template-columns:1fr}
   .timeline-left{border-right:none; border-bottom:1px solid var(--line)}
+  .hero-orb-wrap{display:none;} /* cleaner on small screens */
   .nav-links{
     position:absolute; right:20px; top:58px; width:min(320px,calc(100vw - 40px));
     background:#111823; border:1px solid var(--line); border-radius:10px;
