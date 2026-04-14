@@ -24,12 +24,13 @@ if (hamburger && navLinks) {
   });
 }
 
-// Top-area cursor FX with fade in/out + 3 lagging rings + single center dot
+// Top-area cursor FX with fade in/out + 3 lagging rings
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
   const core = document.getElementById("fxCore");
+  const spark = document.getElementById("fxSpark");
   const r1 = document.getElementById("ring1");
   const r2 = document.getElementById("ring2");
   const r3 = document.getElementById("ring3");
@@ -37,12 +38,13 @@ if (hamburger && navLinks) {
   const t2 = document.getElementById("trail2");
   const t3 = document.getElementById("trail3");
 
-  if (!core || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
+  if (!core || !spark || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
 
   let tx = window.innerWidth * 0.5;
   let ty = 120;
 
   let coreX = tx, coreY = ty;
+  let sparkX = tx, sparkY = ty;
   let r1x = tx, r1y = ty;
   let r2x = tx, r2y = ty;
   let r3x = tx, r3y = ty;
@@ -55,14 +57,16 @@ if (hamburger && navLinks) {
   let velocity = 0;
 
   const TOP_TRACK_HEIGHT = 340;
-  const IDLE_DELAY = 180;
-  const FADE_SPEED = 0.08;
+  const IDLE_DELAY = 180;    // after stop, begin fade out
+  const FADE_SPEED = 0.08;   // opacity lerp speed
   let lastMoveTime = 0;
 
   let targetAlpha = 0;
   let alpha = 0;
 
+  // Easing values -> drag/lag
   const E_CORE = 0.30;
+  const E_SPARK = 0.24;
   const E_R1 = 0.16;
   const E_R2 = 0.11;
   const E_R3 = 0.08;
@@ -92,6 +96,7 @@ if (hamburger && navLinks) {
 
   function setOpacity() {
     core.style.opacity = (alpha * 0.95).toFixed(3);
+    spark.style.opacity = (alpha * 0.9).toFixed(3);
 
     r1.style.opacity = (alpha * 0.8).toFixed(3);
     r2.style.opacity = (alpha * 0.55).toFixed(3);
@@ -107,11 +112,16 @@ if (hamburger && navLinks) {
       targetAlpha = 0;
     }
 
+    // smooth fade in/out
     alpha += (targetAlpha - alpha) * FADE_SPEED;
     setOpacity();
 
+    // trailing motion
     coreX += (tx - coreX) * E_CORE;
     coreY += (ty - coreY) * E_CORE;
+
+    sparkX += (tx - sparkX) * E_SPARK;
+    sparkY += (ty - sparkY) * E_SPARK;
 
     r1x += (tx - r1x) * E_R1;
     r1y += (ty - r1y) * E_R1;
@@ -131,6 +141,7 @@ if (hamburger && navLinks) {
     t3x += (tx - t3x) * E_T3;
     t3y += (ty - t3y) * E_T3;
 
+    // subtle reactive scaling
     const s1 = 1 + Math.min(0.24, velocity / 120);
     const s2 = 1 + Math.min(0.18, velocity / 150);
     const s3 = 1 + Math.min(0.12, velocity / 170);
@@ -140,6 +151,10 @@ if (hamburger && navLinks) {
     move(r2, r2x, r2y, s2);
     move(r3, r3x, r3y, s3);
 
+    const leadX = (tx - coreX) * 0.18;
+    const leadY = (ty - coreY) * 0.18;
+    move(spark, sparkX + leadX, sparkY + leadY, 1);
+
     move(t1, t1x, t1y, 1);
     move(t2, t2x, t2y, 1);
     move(t3, t3x, t3y, 1);
@@ -148,4 +163,5 @@ if (hamburger && navLinks) {
     requestAnimationFrame(animate);
   }
 
-  requestAnimationFrame*
+  requestAnimationFrame(animate);
+})();
