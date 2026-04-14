@@ -122,22 +122,26 @@ em{
   mix-blend-mode:screen;
 }
 
+/* Make all rings brighter */
 .fx-ring{
-  border-radius:50%;
-  border:1px solid rgba(144,185,255,.34);
-  mix-blend-mode:screen;
+  border-color: rgba(160, 205, 255, 0.55) !important;
+  box-shadow:
+    0 0 28px rgba(144,185,255,0.35),
+    inset 0 0 22px rgba(144,185,255,0.16);
 }
+
+/* Optional: per-ring brightness control */
 .fx-ring-1{
-  width:108px; height:108px;
-  box-shadow:0 0 20px rgba(144,185,255,.18), inset 0 0 16px rgba(144,185,255,.08);
+  border-color: rgba(180,220,255,0.75) !important;
+  box-shadow: 0 0 34px rgba(144,185,255,0.45), inset 0 0 24px rgba(144,185,255,0.22);
 }
 .fx-ring-2{
-  width:146px; height:146px;
-  border-color:rgba(144,185,255,.24);
+  border-color: rgba(170,210,255,0.58) !important;
+  box-shadow: 0 0 26px rgba(144,185,255,0.30), inset 0 0 18px rgba(144,185,255,0.14);
 }
 .fx-ring-3{
-  width:188px; height:188px;
-  border-color:rgba(144,185,255,.16);
+  border-color: rgba(160,200,255,0.42) !important;
+  box-shadow: 0 0 18px rgba(144,185,255,0.22), inset 0 0 14px rgba(144,185,255,0.10);
 }
 
 .fx-spark{
