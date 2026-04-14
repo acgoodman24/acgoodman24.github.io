@@ -130,18 +130,26 @@ em{
     inset 0 0 22px rgba(144,185,255,0.16);
 }
 
-/* Optional: per-ring brightness control */
+/* Brighter rings without overriding shared ring behavior */
 .fx-ring-1{
-  border-color: rgba(180,220,255,0.75) !important;
-  box-shadow: 0 0 34px rgba(144,185,255,0.45), inset 0 0 24px rgba(144,185,255,0.22);
+  border-color: rgba(180,220,255,0.90);
+  box-shadow:
+    0 0 34px rgba(144,185,255,0.55),
+    inset 0 0 22px rgba(144,185,255,0.22);
 }
+
 .fx-ring-2{
-  border-color: rgba(170,210,255,0.58) !important;
-  box-shadow: 0 0 26px rgba(144,185,255,0.30), inset 0 0 18px rgba(144,185,255,0.14);
+  border-color: rgba(170,210,255,0.72);
+  box-shadow:
+    0 0 24px rgba(144,185,255,0.40),
+    inset 0 0 16px rgba(144,185,255,0.14);
 }
+
 .fx-ring-3{
-  border-color: rgba(160,200,255,0.42) !important;
-  box-shadow: 0 0 18px rgba(144,185,255,0.22), inset 0 0 14px rgba(144,185,255,0.10);
+  border-color: rgba(160,200,255,0.54);
+  box-shadow:
+    0 0 16px rgba(144,185,255,0.28),
+    inset 0 0 12px rgba(144,185,255,0.10);
 }
 
 .fx-spark{
