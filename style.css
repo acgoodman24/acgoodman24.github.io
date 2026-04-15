@@ -198,7 +198,7 @@ h2{
 .about-text p{color:var(--muted); line-height:1.6}
 
 .projects-grid{display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr))}
-..project-card{
+.project-card{
   border:1px solid var(--line);
   border-radius:12px;
   background:var(--panel);
