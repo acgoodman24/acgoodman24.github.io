@@ -70,6 +70,18 @@ body{
   pointer-events:none;
 }
 
+.cursor-fx-layer.site-fx{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+#navbar, section, footer{
+  position:relative;
+  z-index:1;
+}
+
 .hero-grid{display:grid; gap:16px; position:relative; z-index:2}
 .hero-label{
   color:var(--text);

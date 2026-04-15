@@ -29,9 +29,6 @@ if (hamburger && navLinks) {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
-  const hero = document.getElementById("hero");
-  if (!hero) return;
-
   const core = document.getElementById("fxCore");
   const r1 = document.getElementById("ring1");
   const r2 = document.getElementById("ring2");
@@ -42,8 +39,8 @@ if (hamburger && navLinks) {
 
   if (!core || !r1 || !r2 || !r3 || !t1 || !t2 || !t3) return;
 
-  let tx = hero.clientWidth * 0.5;
-  let ty = hero.clientHeight * 0.35;
+  let tx = window.innerWidth * 0.5;
+  let ty = window.innerHeight * 0.35;
 
   let coreX = tx, coreY = ty;
   let r1x = tx, r1y = ty;
@@ -72,7 +69,7 @@ if (hamburger && navLinks) {
   const E_T2 = 0.09;
   const E_T3 = 0.06;
 
-  hero.addEventListener("mousemove", (e) => {
+  window.addEventListener("mousemove", (e) => {
     const rect = hero.getBoundingClientRect();
     tx = e.clientX - rect.left;
     ty = e.clientY - rect.top;
@@ -87,7 +84,7 @@ if (hamburger && navLinks) {
     lastMoveTime = performance.now();
   });
 
-  hero.addEventListener("mouseleave", () => {
+  window.addEventListener("mouseleave", () => {
     targetAlpha = 0;
   });
 
@@ -96,19 +93,7 @@ if (hamburger && navLinks) {
   }
 
 function setOpacity() {
-  // Bottom-only fade, starting a little higher on the page
-  const heroH = hero.clientHeight || 1;
-  const lowerStart = heroH * 0.74; // starts fading a bit higher
-  const lowerEnd = heroH * 0.94;   // fully faded near bottom
-  let lowerFade = 1;
-
-  if (coreY >= lowerStart) {
-    lowerFade = 1 - (coreY - lowerStart) / (lowerEnd - lowerStart);
-    lowerFade = Math.max(0, Math.min(1, lowerFade));
-  }
-
-  const a = alpha * lowerFade;
-
+  const a = alpha;
   core.style.opacity = (a * 0.95).toFixed(3);
   r1.style.opacity = (a * 0.8).toFixed(3);
   r2.style.opacity = (a * 0.55).toFixed(3);
