@@ -8,6 +8,11 @@
   --accent:#007bff;
 }
 
+::selection{
+  background:#04d39c;
+  color:#0d1117;
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
