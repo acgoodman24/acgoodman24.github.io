@@ -1,11 +1,8 @@
-# Engineering Portfolio
+Engineering Portfolio
 
-Live Site: https://acgoodman24.github.io/
+Live site: https://acgoodman24.github.io/
 
-This is my engineering portfolio showcasing projects in physics,
-mechanical systems, and computational modeling.
+This is my engineering portfolio showcasing projects in
+mechanical systems, physics, and computational modeling.
 
-## Built With
-- HTML
-- CSS
-- JavaScript
+Built With: HTML, CSS, JavaScript
