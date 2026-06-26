@@ -5,11 +5,11 @@
   --text:#e7edf7;
   --muted:#a8b3c6;
   --line:#2a3447;
-  --accent:#8b52fe;
+  --accent:#aa86f8;
 }
 
 ::selection{
-  background:#8b52fe;
+  background:#aa86f8;
   color:#0d1117;
 }
 
